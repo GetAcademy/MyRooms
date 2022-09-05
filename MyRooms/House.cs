@@ -2,38 +2,32 @@
 {
     internal class House
     {
-        public char Room { get; private set; }
+        public Room PersonsRoom { get; private set; }
 
         public House()
         {
-            Room = 'A';
+            var roomA = new Room('A');
+            var roomB = new Room('B');
+            var roomC = new Room('C');
+            var roomD = new Room('D');
+            var roomE = new Room('E');
+            var roomF = new Room('F');
+
+            PersonsRoom = roomA;
+
+            new Door(roomA, roomD);
+            new Door(roomA, roomB);
+            new Door(roomB, roomC);
+            new Door(roomB, roomE);
+            new Door(roomE, roomF);
         }
 
         public void Move(char newRoom)
         {
-            if (Room == 'A' && newRoom is 'B' or 'D')
+            var room = PersonsRoom.FindDoorTo(newRoom);
+            if (room != null)
             {
-                Room = newRoom;
-            }
-            else if (Room == 'B' && newRoom is 'A' or 'C' or 'E')
-            {
-                Room = newRoom;
-            }
-            else if (Room == 'C' && newRoom is 'B')
-            {
-                Room = newRoom;
-            }
-            else if (Room == 'D' && newRoom is 'A')
-            {
-                Room = newRoom;
-            }
-            else if (Room == 'E' && newRoom is 'B' or 'F')
-            {
-                Room = newRoom;
-            }
-            else if (Room == 'F' && newRoom is 'E')
-            {
-                Room = newRoom;
+                PersonsRoom = room;
             }
         }
     }

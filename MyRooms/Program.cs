@@ -1,12 +1,10 @@
 ﻿using MyRooms;
 
-// pause til 
-
 var house = new House();
 
 while (true)
 {
-    Console.WriteLine($"Du er i rom {house.Room}");
+    Console.WriteLine($"Du er i rom {house.PersonsRoom.Name}");
     Console.Write("Hvor vil du gå? ");
     var roomStr = Console.ReadLine();
     var newRoom = roomStr[0];
